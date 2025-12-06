@@ -1,0 +1,5 @@
+{
+  "name": "NeuroMation - AI Avatar Video Generator",
+  "description": "Generate persistent avatars using Gemini 2.5 (NanoBanana) and animate them into videos using Veo.",
+  "requestFramePermissions": []
+}
