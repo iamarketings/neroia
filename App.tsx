@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { AppState, Avatar } from './types';
 import AvatarManager from './components/AvatarManager';
 import VideoCreator from './components/VideoCreator';
+import Login from './components/Login';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [appState, setAppState] = useState<AppState>(AppState.SELECT_KEY);
   const [selectedAvatar, setSelectedAvatar] = useState<Avatar | null>(null);
   const [keyError, setKeyError] = useState(false);
@@ -41,10 +43,20 @@ const App: React.FC = () => {
     setAppState(AppState.VIDEO_GENERATION);
   };
 
+
   const handleReset = () => {
     setSelectedAvatar(null);
     setAppState(AppState.AVATAR_SELECTION);
   };
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  // Show login screen if not authenticated
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-indigo-500/30">
@@ -52,12 +64,12 @@ const App: React.FC = () => {
       <header className="border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-             <div className="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white text-lg">
-               N
-             </div>
-             <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">
-               NeuroMation
-             </h1>
+            <div className="w-8 h-8 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white text-lg">
+              N
+            </div>
+            <h1 className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-zinc-400">
+              NeuroMation
+            </h1>
           </div>
           <div className="flex gap-4 text-sm text-zinc-500">
             <span className={appState === AppState.SELECT_KEY ? 'text-indigo-400' : ''}>1. Access</span>
@@ -69,12 +81,12 @@ const App: React.FC = () => {
 
       {/* Main Content */}
       <main className="p-6 md:p-12 flex flex-col items-center justify-center min-h-[calc(100vh-64px)]">
-        
+
         {appState === AppState.SELECT_KEY && (
           <div className="text-center max-w-md w-full animate-fade-in-up">
             <h2 className="text-3xl font-bold mb-4">Unlock Creativity</h2>
             <p className="text-zinc-400 mb-8">
-              To use the Veo (Video Generation) and Gemini 2.5 (NanoBanana) models, 
+              To use the Veo (Video Generation) and Gemini 2.5 (NanoBanana) models,
               please select a paid API key from your Google Cloud project.
             </p>
             <button
@@ -83,10 +95,10 @@ const App: React.FC = () => {
             >
               Select Google API Key
             </button>
-            
+
             {keyError && (
               <p className="mt-4 text-red-400 text-sm">
-                Selection failed. Please try again. 
+                Selection failed. Please try again.
                 Ensure you have a billing-enabled project.
               </p>
             )}
@@ -109,7 +121,7 @@ const App: React.FC = () => {
 
         {appState === AppState.VIDEO_GENERATION && selectedAvatar && (
           <div className="w-full">
-             <VideoCreator avatar={selectedAvatar} onReset={handleReset} />
+            <VideoCreator avatar={selectedAvatar} onReset={handleReset} />
           </div>
         )}
       </main>
