@@ -1,20 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NeuroMation - AI Avatar Video Generator
 
-# Run and deploy your AI Studio app
+Générateur de vidéos d'avatar AI utilisant Gemini 2.5 et Veo.
 
-This contains everything you need to run your app locally.
+## 🚀 Fonctionnalités
 
-View your app in AI Studio: https://ai.studio/apps/drive/1GDCIA1He0cP9aycdoeUkK7RVI_Qb4_R-
+- Génération d'avatars avec Gemini 2.5 Flash Image (NanoBanana)
+- Création de vidéos à partir d'avatars avec Veo 3.1
+- Interface moderne et intuitive
+- Support multimodal (images et vidéos)
 
-## Run Locally
+## 📦 Technologies
 
-**Prerequisites:**  Node.js
+- **React** 19.2.1
+- **TypeScript** 5.8.2
+- **Vite** 6.2.0
+- **Google Generative AI** (@google/genai)
 
+## 🛠️ Installation
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+# Installer les dépendances
+npm install
+
+# Configurer la clé API
+# Créez un fichier .env.local et ajoutez :
+GEMINI_API_KEY=votre_clé_api_gemini
+
+# Lancer en mode développement
+npm run dev
+
+# Build pour production
+npm run build
+```
+
+## 🌐 Déploiement
+
+Ce projet est optimisé pour Vercel. N'oubliez pas de configurer la variable d'environnement `GEMINI_API_KEY` dans les paramètres de votre projet Vercel.
+
+## 👨‍💻 Auteur
+
+**Aheshman Itibar**
+
+## 📄 Licence
+
+MIT
